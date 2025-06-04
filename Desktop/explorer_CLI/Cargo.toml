@@ -1,0 +1,10 @@
+[package]
+name = "explorer_CLI"
+version = "0.1.0"
+edition = "2024"
+
+
+[workspace]
+
+[dependencies]
+colored = "3.0.0"
