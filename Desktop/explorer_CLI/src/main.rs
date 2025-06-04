@@ -33,14 +33,14 @@ fn main (){
     
 
     loop{
-        print!("{}", "explorer ---> ".bright_blue());
+        print!("{}", "Finder ---> ".bright_blue());
         io::stdout().flush().unwrap();
 
         //read input
         let mut input = String::new();
         io::stdin().read_line(&mut input ).unwrap();
         println!("{} {}", 
-             "You selected:".bright_green(),
+             "You have selected:".bright_green(),
              input.bright_magenta());
         
         //trimming the input
@@ -52,15 +52,15 @@ fn main (){
         let command = parts[0];
         let args = &parts[1..];
         match command{
-            "vt"=>println!("{}", "would run 'vt'".bright_blue()),
-            "cp"=>println!("would run 'cp', with args:{}", args.join(" ").bright_blue()),
-            "cd"=>println!("{}", "would run 'cd'".bright_blue()),
+            "vt"=>println!("{}", "current command 'vt'".bright_blue()),
+            "cp"=>println!("current command 'cp', with args:{}", args.join(" ").bright_blue()),
+            "cd"=>println!("{}", "current command 'cd'".bright_blue()),
             "exit"=>{
-                 println!("{}", "exiting".bright_magenta());
+                 println!("{}", "exiting...".bright_magenta());
                  break;
             }
             _=>println!("{} {}",
-                "unknown command:".bright_red(),
+                "Unknown Command:".bright_red(),
                 command.bright_magenta()),
 
         }
