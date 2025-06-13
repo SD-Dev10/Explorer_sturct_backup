@@ -1,9 +1,13 @@
-//use std :: env;
+use std :: env;
 use colored::*;
 use std::path::PathBuf;
 use std::io::{self, Write};
 mod mod_cd;
+mod mod_cp;
+mod mod_vt;
 use mod_cd::cd_command;
+use mod_cp::cp_command;
+use mod_vt::ls_command;
 
 fn main (){
 
@@ -47,7 +51,7 @@ fn main (){
         
         //trimming the input
         let parts:Vec<&str> = input.trim().split_whitespace().collect();
-        println!("parts:{:?}",parts);
+        //println!("parts:{:?}",parts);
         if parts.is_empty(){
             continue;
         }
@@ -58,8 +62,15 @@ fn main (){
         let mut cd_args = PathBuf::new();
 
         match command{
-            "vt"=>println!("{}", "current command 'vt'".bright_blue()),
-            "cp"=>println!("current command 'cp', with args:{}", args.join(" ").bright_blue()),
+            "vt"=>{
+                println!("{}", "current command 'vt'".bright_blue());
+                let current_directory = env::current_dir().expect("couldn't find directory");
+                ls_command(&current_directory, 1,0);
+            },
+            "cp"=>{
+                println!("current command 'cp':{}", args.join(" ").bright_blue());
+                cp_command(cd_args);
+            },
             "cd"=>{
                println!("{}", "current command 'cd'".bright_blue());
                for arg in args{
